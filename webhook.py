@@ -19,6 +19,7 @@ def webhook():
         send_telegram_notification(str(data))
         return jsonify({"status": "success", "message": "Webhook received"}), 200
     except Exception as e:
+        log(str(e))
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
