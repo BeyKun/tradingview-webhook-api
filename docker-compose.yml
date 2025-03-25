@@ -14,4 +14,4 @@ services:
       - FLASK_RUN_HOST=0.0.0.0
       - FLASK_ENV=development
     command: >
-      sh -c "pip install flask && python webhook.py"
+      sh -c "pip install flask requests && python webhook.py"
