@@ -1,5 +1,5 @@
 from flask import Flask, request, jsonify
-from helper import send_telegram_notification
+from helper import send_telegram_notification, log
 
 app = Flask(__name__)
 
@@ -7,15 +7,13 @@ app = Flask(__name__)
 def webhook():
     try:
         data = request.json  # Mengambil data JSON dari request
+        
+        # Log data yang diterima        
+        log(str(data))
+        
         if not data:
+            log("Invalid JSON")
             return jsonify({"error": "Invalid JSON"}), 400
-        
-        # Log data yang diterima
-        print("Received webhook:", data)
-        
-        # Simpan data ke file (opsional)
-        with open("webhook_logs.txt", "a") as file:
-            file.write(str(data) + "\n")
         
         # Tambahkan logika pemrosesan di sini jika diperlukan
         send_telegram_notification(str(data))

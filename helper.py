@@ -10,3 +10,9 @@ def send_telegram_notification(message: str):
     }
     requests.post(url, body)
     print(message)
+
+def log(message: str):
+    print(message)
+    # Simpan data ke file (opsional)
+    with open("webhook_logs.txt", "a") as file:
+        file.write(message + "\n")
